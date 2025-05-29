@@ -4,10 +4,13 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './api/products/products.module';
+import { PaymentsModule } from './api/payments/payments.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
@@ -18,7 +21,8 @@ import { ProductsModule } from './api/products/products.module';
       autoLoadEntities: true,
       synchronize: true
     }),
-    ProductsModule
+    ProductsModule,
+    PaymentsModule
   ],
   controllers: [AppController],
   providers: [AppService],
