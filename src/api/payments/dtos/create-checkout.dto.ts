@@ -1,3 +1,6 @@
+import { IsString } from 'class-validator';
+
 export class CreateCheckoutDto {
-  productIds: string[];
+  @IsString()
+  productId: string;
 }

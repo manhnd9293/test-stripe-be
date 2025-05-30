@@ -1,4 +1,5 @@
-import { Column, Entity, Generated, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Generated, OneToMany, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { ProductPriceEntity } from '../../payments/entities/product-price.entity';
 
 @Entity('products')
 export class ProductEntity {
@@ -12,4 +13,7 @@ export class ProductEntity {
 
   @Column({nullable: true})
   price: number;
+
+  @OneToMany(()=>ProductPriceEntity, p => p.product)
+  prices: ProductPriceEntity[];
 }

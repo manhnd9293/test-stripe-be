@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Param, Post } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { CreateCheckoutDto } from './dtos/create-checkout.dto';
 
@@ -9,6 +9,6 @@ export class PaymentsController {
 
   @Post('/create-checkout-session')
   createPaymentIntent(@Body() data: CreateCheckoutDto) {
-    this.paymentsService.createCheckout(data);
+    return this.paymentsService.createCheckoutSession(data);
   }
 }
